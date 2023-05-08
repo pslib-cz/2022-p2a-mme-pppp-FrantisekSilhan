@@ -1,8 +1,7 @@
-bool dataLED[5] = {false, false, false, false, false};
 //nastavení pinů tlačítek a deklarace globálních proměnných
-const int StepButtonPin = 9;
-const int GroupButtonPin = 10;
-const int ModeButtonPin = 11;
+const int StepButtonPin = A5;
+const int GroupButtonPin = 4;
+const int ModeButtonPin = A4;
 
 bool lastStepButton = false;
 bool lastModeButton = false;
@@ -18,26 +17,38 @@ int modeYesNoChance = 50;
 int modeRandomGroupData[5];
 int modeRandomGroupIndex = 0;
 
+void resetLEDs() {
+  // digitalWrite(A0, false);
+  // digitalWrite(A1, false);
+  // digitalWrite(A2, false);
+  digitalWrite(7, false);
+  digitalWrite(6, false);
+  digitalWrite(3, false);
+  digitalWrite(11, false);
+  digitalWrite(9, false);
+}
+
 //točení/výběr módu
 void advanceMode() {
+  resetLEDs();
   mode = (mode + 1) % 3;
 
-  digitalWrite(A1, 0 == mode);
-  digitalWrite(A2, 1 == mode);
-  digitalWrite(A3, 2 == mode);
+  analogWrite(A0, 0 == mode ? 130 : 0);
+  analogWrite(A1, 1 == mode ? 130 : 0);
+  analogWrite(A2, 2 == mode ? 150 : 0);
 }
 //točení/výběr skupin
 void advanceGroup() {
-  groups = (groups + 1) % sizeof(dataLED);
-  for (int i = 0; i < sizeof(dataLED); i++) {
-    dataLED[i] = (i <= groups);
+  resetLEDs();
+  groups += 1;
+  if (groups == 5) {
+    groups = 0;
   }
-}
-
-void updateDataLED(int number) {
-  for (int i = 0; i < sizeof(dataLED); i++) {
-    dataLED[i] = (i == number);
-  }
+  digitalWrite(7, groups == 0);
+  digitalWrite(6, groups == 1);
+  digitalWrite(3, groups == 2);
+  digitalWrite(11, groups == 3);
+  digitalWrite(9, groups == 4);
 }
 
 
@@ -57,7 +68,7 @@ int modeRandomGroup() {
   for (int i = 0; i <= groups; i++) {
     int r = random(groups+1);
     bool found = false;
-
+    
     for (int j = 0; j < modeRandomGroupIndex; j++) {
       if (modeRandomGroupData[j] == r) {
         found = true;
@@ -76,46 +87,60 @@ int modeRandomGroup() {
   }
 }
 
+void switchLedFromNum(int num) {
+  switch (num) {
+    case 0:
+      digitalWrite(7, true);
+      break;
+    case 1:
+      digitalWrite(6, true);
+      break;
+    case 2:
+      digitalWrite(3, true);
+      break;
+    case 3:
+      digitalWrite(11, true);
+      break;
+    case 4:
+      digitalWrite(9, true);
+      break;
+  }
+}
+
 //funkce při stisknutí hlavního krokového tlačítka
 void step() {
+  resetLEDs();
   switch(mode) {
     case 0:
       if (modeYesNo()) {
-        dataLED[0] = false;
-        dataLED[1] = false;
-        dataLED[2] = false;
-        dataLED[3] = true;
-        dataLED[4] = true;
+        digitalWrite(3, true);
       } else {
-        dataLED[0] = true;
-        dataLED[1] = true;
-        dataLED[2] = false;
-        dataLED[3] = false;
-        dataLED[4] = false;
+        digitalWrite(7, true);
       }
       break;
     case 1:
       modeGroupGroup = (modeGroupGroup + 1) % (groups + 1);
-      updateDataLED(modeGroupGroup);
+      switchLedFromNum(modeGroupGroup);
       break;
     case 2:
-      updateDataLED(modeRandomGroup());
+      switchLedFromNum(modeRandomGroup());
       break;
   }
 }
 
 void setup() {
+  Serial.begin(9600);
   //nastavení ledek na zobrazení výstupu módů
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
+  pinMode(7, OUTPUT);
   pinMode(6, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(9, OUTPUT);
   
   //nastavení ledek na zobrazení vybraného módu
+  pinMode(A0, OUTPUT);
   pinMode(A1, OUTPUT);
   pinMode(A2, OUTPUT);
-  pinMode(A3, OUTPUT);
 
   //nastavení vstupu tlačítek
   pinMode(StepButtonPin, INPUT);
@@ -126,7 +151,7 @@ void setup() {
   advanceMode();
 
   //nastavení seedu z nezapojeného analogového pinu
-  randomSeed(analogRead(A4));
+  randomSeed(analogRead(A3));
 }
 
 void loop() {
@@ -150,10 +175,6 @@ void loop() {
 
     memset(modeRandomGroupData, 0, sizeof(modeRandomGroupData));
     modeRandomGroupIndex = 0;
-  }
-
-  for (int i = 0; i < 5; i++) {
-    digitalWrite(6 - i, dataLED[i]);
   }
 
   lastStepButton = stepButton;
