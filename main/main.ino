@@ -33,9 +33,9 @@ void advanceMode() {
   resetLEDs();
   mode = (mode + 1) % 3;
 
-  analogWrite(A0, 0 == mode ? 130 : 0);
-  analogWrite(A1, 1 == mode ? 130 : 0);
-  analogWrite(A2, 2 == mode ? 150 : 0);
+  analogWrite(A0, 0 == mode ? 128 : 0);
+  analogWrite(A1, 1 == mode ? 128 : 0);
+  analogWrite(A2, 2 == mode ? 128 : 0);
 }
 //točení/výběr skupin
 void advanceGroup() {
