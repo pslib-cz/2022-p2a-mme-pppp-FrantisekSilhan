@@ -113,7 +113,7 @@ void step() {
   switch(mode) {
     case 0:
       if (modeYesNo()) {
-        digitalWrite(3, true);
+        digitalWrite(9, true);
       } else {
         digitalWrite(7, true);
       }
