@@ -3,8 +3,8 @@
 //piny
 #define MODE_LEDS_DATA_PIN 3
 #define GROUP_LEDS_DATA_PIN 2
-const int modeButtonPin = 5;
-const int groupButtonPin = 6;
+const int modeButtonPin = 6;
+const int groupButtonPin = 5;
 const int stepButtonPin = 4;
 
 //globální proměnné
@@ -16,9 +16,9 @@ bool lastStepButton = false;
 
 const int modes = 3;
 int mode = -1;
-int group = -1;
 
-int modeRandomGroupData[5];
+int group = -1;
+int modeRandomGroupData[GROUP_LEDS];
 int modeRandomGroupIndex = 0;
 
 CRGB colors[5] = {CRGB::Red, CRGB::Green, CRGB::Blue, CRGB::Cyan, CRGB::Yellow};
@@ -37,6 +37,11 @@ void setup() {
   FastLED.setBrightness(50);
 
   advanceMode();
+  advanceGroup();
+  for (int i = 0; i < GROUP_LEDS; i++) {
+    modeRandomGroupData[i] = i;
+  }
+  shuffleArray(modeRandomGroupData, GROUP_LEDS);
 }
 
 int modAdvance(int number, int mod) {
@@ -55,7 +60,6 @@ void advanceGroup() {
   }
 }
 
-
 bool modeYesNo() {
   const int number = random(0, 100);
   if (number < modeYesNoChance) {
@@ -67,7 +71,6 @@ bool modeYesNo() {
   }
 }
 
-
 void modeGroup(int number) {
   if (number == -2) {
     modeGroupGroup = modAdvance(modeGroupGroup, GROUP_LEDS);
@@ -78,27 +81,29 @@ void modeGroup(int number) {
   }
 }
 
-int generateRandomGroup() {
-  for (int i = 0; i <= group; i++) {
-    int r = random(group+1);
-    bool found = false;
-
-    for (int j = 0; j < modeRandomGroupIndex; j++) {
-      if (modeRandomGroupData[j] == r) {
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      modeRandomGroupData[modeRandomGroupIndex] = r;
-      modeRandomGroupIndex++;
-      if (modeRandomGroupIndex > group) {
-        modeRandomGroupIndex = 0;
-        memset(modeRandomGroupData, 0, sizeof(modeRandomGroupData));
-      }
-      return r;
-    }
+void shuffleArray(int* array, int size) {
+  int last = modeRandomGroupData[GROUP_LEDS-1];
+  for (int i = size - 1; i > 0; i--) {
+    int j = random(i + 1);
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
+  if (array[0] == last) {
+    int j = random(1, GROUP_LEDS+1);
+    int temp = array[0];
+    array[0] = array[j];
+    array[j] = temp;
+  }
+}
+
+int modeRandomGroup() {
+  if (modeRandomGroupIndex == GROUP_LEDS-1) {
+    shuffleArray(modeRandomGroupData, GROUP_LEDS);
+  }
+
+  modeRandomGroupIndex = modAdvance(modeRandomGroupIndex, GROUP_LEDS);
+  return modeRandomGroupData[modeRandomGroupIndex];
 }
 
 void step() {
@@ -113,7 +118,7 @@ void step() {
       modeGroup(-2);
       break;
     case 2:
-      modeGroup(generateRandomGroup());
+      modeGroup(modeRandomGroup());
       break;
   }
 }
@@ -124,6 +129,8 @@ void loop() {
     advanceMode();
 
     modeGroupGroup = -1;
+    modeRandomGroupIndex == GROUP_LEDS-1;
+    modeYesNoChance = 50;
   }
   lastModeButton = modeButton;
 
@@ -132,6 +139,8 @@ void loop() {
     advanceGroup();
 
     modeGroupGroup = -1;
+    modeRandomGroupIndex == GROUP_LEDS-1;
+    modeYesNoChance = 50;
   }
   lastGroupButton = groupButton;
 
@@ -141,6 +150,6 @@ void loop() {
   }
   lastStepButton = stepButton;
 
-  delay(100);
+  delay(30);
   FastLED.show();
 }
