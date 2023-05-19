@@ -73,7 +73,7 @@ bool modeYesNo() {
 
 void modeGroup(int number) {
   if (number == -2) {
-    modeGroupGroup = modAdvance(modeGroupGroup, GROUP_LEDS);
+    modeGroupGroup = modAdvance(modeGroupGroup, group+1);
     number = modeGroupGroup;
   }
   for (int i = 0; i < GROUP_LEDS; i++) {
@@ -82,6 +82,7 @@ void modeGroup(int number) {
 }
 
 void shuffleArray(int* array, int size) {
+  if (group == 1) return;
   int last = modeRandomGroupData[GROUP_LEDS-1];
   for (int i = size - 1; i > 0; i--) {
     int j = random(i + 1);
@@ -98,11 +99,17 @@ void shuffleArray(int* array, int size) {
 }
 
 int modeRandomGroup() {
-  if (modeRandomGroupIndex == GROUP_LEDS-1) {
+  if (group == 0) {
+    return 0;
+  }
+  if (modeRandomGroupIndex >= group) {
     shuffleArray(modeRandomGroupData, GROUP_LEDS);
   }
 
-  modeRandomGroupIndex = modAdvance(modeRandomGroupIndex, GROUP_LEDS);
+  do {
+    modeRandomGroupIndex = modAdvance(modeRandomGroupIndex, GROUP_LEDS);
+  } while (modeRandomGroupData[modeRandomGroupIndex] > group);
+
   return modeRandomGroupData[modeRandomGroupIndex];
 }
 
