@@ -113,7 +113,14 @@ int modeRandomGroup() {
   return modeRandomGroupData[modeRandomGroupIndex];
 }
 
+void clearLeds() {
+  FastLED.clear();
+  FastLED.show();
+  mode_leds[0] = colors[mode];
+}
+
 void step() {
+  clearLeds();
   switch(mode) {
     case 0:
       yes = modeYesNo();
@@ -157,6 +164,6 @@ void loop() {
   }
   lastStepButton = stepButton;
 
-  delay(30);
+  delay(50);
   FastLED.show();
 }
