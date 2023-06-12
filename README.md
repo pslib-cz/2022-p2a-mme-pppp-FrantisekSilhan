@@ -7,13 +7,13 @@ For creating random teams, assigning people to teams, assigning people to work g
 
 # What is needed?
 - [strip board](https://www.ebay.co.uk/p/709484644) 25x9 holes (18 CZK)
-- Arduino Nano (129 CZK)
+- [Arduino Nano](https://www.aliexpress.com/item/1005005655120765.html) (129 CZK)
 - 9V battery (~40 CZK)
-- 9V baterry clip (3 CZK)
+- 9V baterry [clip](https://www.aliexpress.com/item/32728912830.html) (11 CZK / 10pcs)
 - [mini slide switch](https://www.allelectronics.com/item/ssw-86/spdt-mini-slide-switch/1.html) (10.0 x 5.5mm body) (22 CZK)
 - 2 LED strips (5 LED + 1 LED) [WS2812B](https://www.aliexpress.com/item/1005002630710155.html) (140 CZK / 1m)
-- 3 TTP223 [touch buttons](https://www.aliexpress.com/item/1005004970116737.html) (15 CZK / 10ks)
-- 3pin cable + [header connectors](https://www.aliexpress.com/item/32724478308.html) (~54 female + ~33 male) (70 CZK / 20ks)
+- 3 TTP223 [touch buttons](https://www.aliexpress.com/item/1005004970116737.html) (15 CZK / 10pcs)
+- 3pin cable + [header connectors](https://www.aliexpress.com/item/32724478308.html) (~54 female + ~33 male) (70 CZK / 20pcs)
 - Final price ~434 CZK (~19,75 USD 5.6.2023)
 
 # How to create one
@@ -53,7 +53,10 @@ Solder the female connectors to the other side of the button cables according to
 
 For LED strip cables, do not use female connectors, but solder the cables directly to the LED strip.
 
-<img src="./images/cables4.png" width="600" height="300">
+<p style="display: flex; align-items: flex-start; gap: 1em;">
+<img src="./images/update/ledcables.jpg" width="300" height="500">
+<img src="./images/update/buttoncables.jpg" width="300" height="500">
+</p>
 
 Now you should have:
 - 2 LED strip cables (one LED strip with 5 LEDs, the other LED strip with 1 LED)
@@ -63,42 +66,46 @@ Now you should have:
 
 Solder the ground from the 9V battery clip to the Arduino ground and connect the "+" of the 9V battery to the slide switch and then from the switch to the Uin of the Arduino.
 
-Upload the provided [code](./main/main.ino) using the Arduino IDE to the Arduino and set the pins as required (according to the data pins in the image below).
+Upload the provided [code](./main/main.ino) using the Arduino IDE to the Arduino and set the pins as required (according to the data pins in the image below).\
+(Don't forget to include the FastLED library: Tools > Manage Libraries... (Ctrl + Shift + I) > search "FastLED" > INSTALL)
 
 Next, insert the strip board into the box, plug the Arduino into the prepared connectors and place the battery next to it. Glue the switch into the prepared hole on the side of the box. (see image below)
 
 Test if the Arduino turns on after you flip the switch.
 
 <p style="display: flex; align-items: flex-start; gap: 1em;">
-<img src="./images/box.png" width="300" height="500">
-<img src="./images/cables3.png" width="400" height="360">
+<img src="./images/update/arduinopowersupply.jpg" width="300" height="500">
+<img src="./images/update/arduinopowersupply2.jpg" width="300" height="500">
 </p>
+<img src="./images/cables3.png" width="400" height="360">
 
-## Step 4: Glue the buttons and LED strips into the lid
+## Step 4: Glue the buttons and LED strips into the lid and box
 
-Prepare the buttons with male connectors and plug them into the prepared cables.
+Glue all buttons and both LED strips into the prepared holes in the lid and box (see image below).
 
-Glue all buttons and both LED strips into the prepared holes in the lid (see image below).
-
-<img src="./images/box3.png" width="400" height="360">
+<p style="display: flex; align-items: flex-start; gap: 1em;">
+<img src="./images/update/box.jpg" width="350" height="300">
+<img src="./images/update/lid.jpg" width="400" height="250">
+</p>
 
 ## Step 5: Connect all cables
 
-Plug all cables into the female connectors and close the box carefully.
+Connect the prepared cables to the buttons with male connectors.\
+Plug all cables into the female connectors on the strip board and close the box carefully.
 
 
 Test that all buttons are working and all LEDs are showing output.
 
 <p style="display: flex; align-items: flex-start; gap: 1em;">
-<img src="./images/box4.png" width="400" height="360">
-<img src="./images/box5.png" width="400" height="360">
+<img src="./images/update/final.jpg" width="400" height="360">
+<img src="./images/update/final2.jpg" width="400" height="360">
 </p>
 
 # Usage Instructions
 
 The box has this basic layout (pins can be modified as needed in [code](./main/main.ino))
 
-<img src="./images/box6.png" width="400" height="360">
+<img src="./images/update/final3.jpg" width="400" height="360">
 
 - 1 - Button to change the number of groups
     - When pressed, the number of selected groups will be shown on the top row of the LEDs (shown as a number 5 in the image)

@@ -7,9 +7,9 @@ Pro tvorbu náhodných týmů, rozřazení lidí do týmů, rozřazování do pr
 
 # Co je potřeba?
 - [strip board](https://www.ebay.co.uk/p/709484644) 25x9 děr (18 CZK)
-- Arduino Nano (129 CZK)
+- [Arduino Nano](https://www.aliexpress.com/item/1005005655120765.html) (129 CZK)
 - 9V baterie (~40 CZK)
-- Klip na 9V baterii (3 CZK)
+- [Klip](https://www.aliexpress.com/item/32728912830.html) na 9V baterii (11 CZK / 10ks)
 - [mini posuvný přepínač](https://www.allelectronics.com/item/ssw-86/spdt-mini-slide-switch/1.html) (10.0 x 5.5mm tělo) (22 CZK)
 - 2 LED pásky (5 LED + 1 LED) [WS2812B](https://www.aliexpress.com/item/1005002630710155.html) (140 CZK / 1m)
 - 3 TTP223 [dotyková tlačítka](https://www.aliexpress.com/item/1005004970116737.html) (15 CZK / 10ks)
@@ -53,7 +53,10 @@ Připájejte samičí konektory na druhou stranu tlačítkových kabelů podle p
 
 Pokud jde o kabely pro LED pásky, nepoužívejte samičí konektory, ale připájejte kabely přímo k LED pásku.
 
-<img src="./images/cables4.png" width="600" height="300">
+<p style="display: flex; align-items: flex-start; gap: 1em;">
+<img src="./images/update/ledcables.jpg" width="300" height="500">
+<img src="./images/update/buttoncables.jpg" width="300" height="500">
+</p>
 
 Teď byste měli mít:
 - 2 kabely s LED pásy (jeden LED pás s 5 LEDkami, druhý LED pás s 1 LEDkou)
@@ -63,42 +66,46 @@ Teď byste měli mít:
 
 Připájejte zem z klipu pro 9V baterii na zem Arduina a "+" 9V baterie přípájejte na posuvný přepínač a následně z přepínače na Uin Arduina.
 
-Nahrajte připravený [kód](./main/main.ino) pomocí Arduino IDE do Arduina a nastavte piny dle potřeby (podle data pinů na obrázku níže).
+Nahrajte připravený [kód](./main/main.ino) pomocí Arduino IDE do Arduina a nastavte piny dle potřeby (podle data pinů na obrázku níže).\
+(Nezapomeňte připojit knihovnu FastLED: Tools > Manage Libraries... (Ctrl + Shift + I) > vyhledejte "FastLED" > INSTALL)
 
 Následně vložte strip board do boxu, zasuňte Arduino do připravených konektorů a vedle položte baterii. Přepínač přilepte do připravené díry na boku krabičky. (viz foto níže)
 
 Otestujte, zda se Arduino zapne po přepnutí přepínače.
 
 <p style="display: flex; align-items: flex-start; gap: 1em;">
-<img src="./images/box.png" width="300" height="500">
-<img src="./images/cables3.png" width="400" height="360">
+<img src="./images/update/arduinopowersupply.jpg" width="300" height="500">
+<img src="./images/update/arduinopowersupply2.jpg" width="300" height="500">
 </p>
+<img src="./images/cables3.png" width="400" height="360">
 
-## Krok 4: Vlepení tlačítek a LED pásků do víka
+## Krok 4: Vlepení tlačítek a LED pásků do víka a boxu
 
-Připravte si tlačítka se samčími konektory a zapojte je do připravených kabelů.
+Vlepte všechna tlačítka a oba LED pásky do připravených děr ve víku a krabičce. (viz foto níže)
 
-Vlepte všechna tlačítka a oba LED pásky do připravených děr ve víku. (viz foto níže)
-
-<img src="./images/box3.png" width="400" height="360">
+<p style="display: flex; align-items: flex-start; gap: 1em;">
+<img src="./images/update/box.jpg" width="350" height="300">
+<img src="./images/update/lid.jpg" width="400" height="250">
+</p>
 
 ## Krok 5: Zapojení všech kabelů
 
-Zapojte všechny kabely do samičích konektorů a krabičku opatrně zavřete.
+Ke tlačítkům se samčími konektory zapojte připravené kabely.\
+Zapojte všechny kabely do samičích konektorů na strip boardu a krabičku opatrně zavřete.
 
 
 Otestujte, zda všechna tlačítka fungují a všechny LEDky zobrazují výstup.
 
 <p style="display: flex; align-items: flex-start; gap: 1em;">
-<img src="./images/box4.png" width="400" height="360">
-<img src="./images/box5.png" width="400" height="360">
+<img src="./images/update/final.jpg" width="400" height="360">
+<img src="./images/update/final2.jpg" width="400" height="360">
 </p>
 
 # Návod k použití
 
 Krabička má toto základní rozložení (piny můžou být upraveny podle potřeby v [kódu](./main/main.ino))
 
-<img src="./images/box6.png" width="400" height="360">
+<img src="./images/update/final3.jpg" width="400" height="360">
 
 - 1 - Tlačítko pro změnu počtu skupin
     - Po stisknutí se ukáže počet vybraných skupin na horní řadě LED (na obrázku zobrazeno číslem 5)
