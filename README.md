@@ -6,7 +6,7 @@
 For creating random teams, assigning people to teams, assigning people to work grous or training activities.
 
 # What is needed?
-- [strip board](https://www.ebay.co.uk/p/709484644) 25x9 holes (18 CZK)
+- [strip board](https://www.aliexpress.com/item/1005001298180557.html) 25x9 holes (35 CZK / 5pcs)
 - [Arduino Nano](https://www.aliexpress.com/item/1005005655120765.html) (129 CZK)
 - 9V battery (~40 CZK)
 - 9V baterry [clip](https://www.aliexpress.com/item/32728912830.html) (11 CZK / 10pcs)
@@ -14,7 +14,7 @@ For creating random teams, assigning people to teams, assigning people to work g
 - 2 LED strips (5 LED + 1 LED) [WS2812B](https://www.aliexpress.com/item/1005002630710155.html) (140 CZK / 1m)
 - 3 TTP223 [touch buttons](https://www.aliexpress.com/item/1005004970116737.html) (15 CZK / 10pcs)
 - 3pin cable + [header connectors](https://www.aliexpress.com/item/32724478308.html) (~54 female + ~33 male) (70 CZK / 20pcs)
-- Final price ~434 CZK (~19,75 USD 5.6.2023)
+- Final price ~451 CZK (~20,79 USD 18.06.2023)
 
 # How to create one
 

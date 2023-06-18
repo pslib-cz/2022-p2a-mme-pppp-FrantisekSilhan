@@ -6,7 +6,7 @@
 Pro tvorbu náhodných týmů, rozřazení lidí do týmů, rozřazování do pracovních skupin nebo vzdělávacích aktivit.
 
 # Co je potřeba?
-- [strip board](https://www.ebay.co.uk/p/709484644) 25x9 děr (18 CZK)
+- [strip board](https://www.aliexpress.com/item/1005001298180557.html) 25x9 děr (35 CZK / 10ks)
 - [Arduino Nano](https://www.aliexpress.com/item/1005005655120765.html) (129 CZK)
 - 9V baterie (~40 CZK)
 - [Klip](https://www.aliexpress.com/item/32728912830.html) na 9V baterii (11 CZK / 10ks)
@@ -14,7 +14,7 @@ Pro tvorbu náhodných týmů, rozřazení lidí do týmů, rozřazování do pr
 - 2 LED pásky (5 LED + 1 LED) [WS2812B](https://www.aliexpress.com/item/1005002630710155.html) (140 CZK / 1m)
 - 3 TTP223 [dotyková tlačítka](https://www.aliexpress.com/item/1005004970116737.html) (15 CZK / 10ks)
 - 3pinový kabel + [header konektory](https://www.aliexpress.com/item/32724478308.html) (~54 samičích + ~33 samčích) (70 CZK / 20ks)
-- Finální cena ~434 CZK
+- Finální cena ~451 CZK (18.06.2023)
 
 # Výroba
 
