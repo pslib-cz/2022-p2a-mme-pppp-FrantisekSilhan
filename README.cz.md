@@ -20,7 +20,7 @@ Pro tvorbu náhodných týmů, rozřazení lidí do týmů, rozřazování do pr
 
 ## Krok 0:
 
-Vytiskněte [krabičku](./stl/box.STL) a [víko](./stl/viko.stl) na 3D tiskárně
+Vytiskněte [krabičku](./stl/box.STL) a [víko](./stl/lid.STL) na 3D tiskárně
 
 ## Krok 1: Připájení samičích (female) konektorů na strip board
 

@@ -20,7 +20,7 @@ For creating random teams, assigning people to teams, assigning people to work g
 
 ## Step 0:
 
-Print [box](./stl/box.STL) and [lid](./stl/viko.stl) on a 3D printer
+Print [box](./stl/box.STL) and [lid](./stl/lid.STL) on a 3D printer
 
 ## Step 1: Solder the female connectors to the strip board
 
