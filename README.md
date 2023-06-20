@@ -3,7 +3,7 @@
 [![Language](https://img.shields.io/badge/Language-English-blue)](./README.md) [![Jazyk](https://img.shields.io/badge/Jazyk-Čeština-blue)](./README.cz.md)
 
 
-For creating random teams, assigning people to teams, assigning people to work grous or training activities.
+For creating random teams, assigning people to teams, assigning people to work groups or training activities.
 
 # What is needed?
 - [strip board](https://www.aliexpress.com/item/1005001298180557.html) 25x9 holes (35 CZK / 5pcs)
